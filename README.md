@@ -10,5 +10,14 @@ TODO:
 1. HTML is simple. Better way - some API calls with JSON in return.
 2. Logging
 3. Error handling
+4. Database (https://github.com/jackc/pgx)
+5. Routing module (because I can)
 
 If there any better way to pass db handler to httpHandler? (Except main -> App struct -> Page struct)
+
+Tried already:
+Modules & packages
+Project Layout
+net/http, basic routing, handlers
+Struct embedding
+Html/template basics
