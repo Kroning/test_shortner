@@ -1,0 +1,42 @@
+{{define "base"}}
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <link rel="stylesheet" type="text/css" href="static/css.css">
+  <title>Shortner - {{.Title}}</title>
+</head>
+  
+<body>
+  <div class=main>
+    <div class="table" id="menu">
+      <div class="client_row">
+        <div class="cell">
+          <a href="/">Search</a>
+        </div>      
+        <div class="cell">
+          <a href="/save">New</a>
+        </div>
+      </div>
+		</div>
+    <div class="table" id="menu">
+      <div class="client_row">
+        <div class="cell">
+					{{template "form" .}}
+          <!--form action="/" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+            Search alias: <input type=text id="n1" value='' size=3> &nbsp <input type=button id="search" value="Search">
+          </form-->
+        </div>
+        <!--div class="cell">
+          <form action="/save" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+            New alias: <input type=text id="n1" value='' size=3> &nbsp <input type=button id="new" value="New">
+          </form>
+        </div-->
+      </div>
+    </div>
+    <div class="table" id="result">
+    </div>    
+  </div>
+</body>
+</html>
+{{end}}

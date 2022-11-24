@@ -1,0 +1,36 @@
+html {height: 100%; }
+
+body {height: 100%;padding: 0; margin: 0; width:100%; position:relative; }
+
+.main { vertical-align: middle; width:1000px; position:relative; top:20%; left:20%; background-color: #EEEEEE; padding: 10px 10px; }
+.client { display: table-row; }
+.client_data { display: table; }
+.client_row { display: table-row; }
+.client_cell { display: table-cell; padding: 5px 5px; border: 1px solid #DDDDDD; }
+.table { text-align: center; vertical-align: middle; display: table; margin: 10px 10px; background-color: #F5F5F5; width: -webkit-fill-available; width: -moz-available; }
+.row { text-align: center; display: table-row; }
+.cell { text-align: center; display: table-cell; padding: 5px 5px; border: 1px solid #DDDDDD; vertical-align: middle;}
+.tek_zn { margin: 3px; };
+
+.button_tog {
+	border: none;
+	background-color: #CCCCCC;
+	padding: 5px 5px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+	border-bottom: 1px solid #7a8c8c;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.pressed {
+	color: red;
+}
+
+
+/* add_record */
+.add_main {text-align: center; vertical-align: middle; display: table; margin: 10px 10px;}
+.add_row {text-align: center; display: table-row;}
+.add_cell {text-align: center; display: table-cell; padding: 5px 5px; border: 1px solid #DDDDDD;}
+
