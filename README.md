@@ -13,6 +13,9 @@ TODO:
 3. Error handling
 4. Database (https://github.com/jackc/pgx)
 5. Routing module (because I can)
+6. Configs
+7. Tests
+8. Docs
 
 If there any better way to pass db handler to httpHandler? (Except main -> App struct -> Page struct)
 
