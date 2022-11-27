@@ -9,13 +9,9 @@ If you can point something that I am doing wrong - feel free to write.
 
 TODO:
 1. HTML is simple. Better way - some API calls with JSON in return.
-2. Logging
-3. Error handling
-4. Database (https://github.com/jackc/pgx)
-5. Routing module (because I can)
-6. Configs
-7. Tests
-8. Docs
+2. Database (https://github.com/jackc/pgx)
+3. Routing module (because I can)
+4. Tests
 
 If there any better way to pass db handler to httpHandler? (Except main -> App struct -> Page struct)
 
@@ -25,6 +21,10 @@ Project Layout<br>
 net/http, basic routing, handlers<br>
 Struct embedding<br>
 Html/template basics<br>
+Docs (commented, read with m=all)
+Configs (yml & env)
+Logging (log package, saving to file)
+Error handling (basic, added where it needs to return error)
 
 v.1.0.* <br>
 ![v.1.0.*](readme_pics/v1.0.png)
