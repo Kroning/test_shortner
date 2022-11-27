@@ -5,6 +5,8 @@ server:
 
 # Database credentials
 database:
-  user: "shortner"
-  pass: "super-pedro-1980"
-
+  user: "shortneruser"
+  pass: "pass"
+  host: "localhost"
+  port: "5432"
+  dbname: "shortner"
