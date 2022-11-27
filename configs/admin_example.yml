@@ -1,0 +1,10 @@
+# Server configurations
+server:
+  host: "localhost"
+  port: 9990
+
+# Database credentials
+database:
+  user: "shortner"
+  pass: "super-pedro-1980"
+
