@@ -25,3 +25,6 @@ Project Layout<br>
 net/http, basic routing, handlers<br>
 Struct embedding<br>
 Html/template basics<br>
+
+v.1.0.* <br>
+![v.1.0.*](readme_pics/v1.0.png)
