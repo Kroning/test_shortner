@@ -21,10 +21,10 @@ Project Layout<br>
 net/http, basic routing, handlers<br>
 Struct embedding<br>
 Html/template basics<br>
-Docs (commented, read with m=all)
-Configs (yml & env)
-Logging (log package, saving to file)
-Error handling (basic, added where it needs to return error)
+Docs (commented, read with m=all)<br>
+Configs (yml & env)<br>
+Logging (log package, saving to file)<br>
+Error handling (basic, added where it needs to return error)<br>
 
 v.1.0.* <br>
 ![v.1.0.*](readme_pics/v1.0.png)
