@@ -1,0 +1,9 @@
+{{define "form"}}
+				<div class="cell">
+					<form action="/save" method="post" accept-charset="UTF-8" enctype="application/x-www-form-urlencoded">
+            New alias: <input type=text name="alias" id="alias" value='' size=3> &nbsp 
+						Url: <input type=text name="url" id="url" value='' size=30> &nbsp 
+						<input type=submit id="new" value="Shorten">
+					</form>
+				</div>
+{{end}}

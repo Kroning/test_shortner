@@ -21,21 +21,11 @@
 		</div>
     <div class="table" id="menu">
       <div class="client_row">
-        <div class="cell">
 					{{template "form" .}}
-          <!--form action="/" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
-            Search alias: <input type=text id="n1" value='' size=3> &nbsp <input type=button id="search" value="Search">
-          </form-->
-        </div>
-        <!--div class="cell">
-          <form action="/save" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
-            New alias: <input type=text id="n1" value='' size=3> &nbsp <input type=button id="new" value="New">
-          </form>
-        </div-->
       </div>
     </div>
-    <div class="table" id="result">
-    </div>    
+    {{block "message" .}}{{end}}
+		{{block "result" .}}{{end}}
   </div>
 </body>
 </html>

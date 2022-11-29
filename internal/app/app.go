@@ -30,7 +30,7 @@ type app struct {
 func NewApp(name string) (app, error) {
   app := app{
     name	: name,
-    Page	: hand.NewPage("Admin",nil),
+    Page	: hand.NewPage("Admin",nil,context.Background()),
 		Ctx		: context.Background(),
   }
 
@@ -53,14 +53,14 @@ func NewApp(name string) (app, error) {
 func (myapp *app) GetPool() (*pgxpool.Pool, error ) {
 	db := myapp.Cfg.Db
 	dburl := "postgres://"+db.Username+":"+db.Password+"@"+db.Host+":"+db.Port+"/"+db.Dbname
-  dbpool, err := pgxpool.New(myapp.Ctx, dburl)
+  dbpool, err := pgxpool.New(myapp.Page.Ctx, dburl)
   if err != nil {
     return nil, err
   }
   //defer dbpool.Close() - No need actually
 
   myapp.Page.Db = dbpool
-  _, err = myapp.Page.Db.Acquire(myapp.Ctx)
+  _, err = myapp.Page.Db.Acquire(myapp.Page.Ctx)
   if err != nil {
     return nil, err
   }	
