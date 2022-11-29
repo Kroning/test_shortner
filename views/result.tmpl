@@ -1,0 +1,14 @@
+{{define "result"}}
+		<div class="table" id="result">
+        {{range $foo := .Result }}
+        <div class="client_row">
+                {{ range $boo := $foo}}
+                <div class="cell">
+                        {{printf "%s" $boo}}
+                </div>
+                {{end}}
+        </div>
+        {{end}}
+		</div>
+{{end}}
+
