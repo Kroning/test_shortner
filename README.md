@@ -9,12 +9,10 @@ If you can point something that I am doing wrong - feel free to write.
 
 TODO:
 1. HTML is simple. Better way - some API calls with JSON in return.
-2. Database (https://github.com/jackc/pgx).
-3. Routing module (because I can).
-4. Tests.
-5. How to install (sql, nginx, rc.d)
-6. Authorization and private links.
-7. Link's statistic.
+2. Routing module (because I can).
+3. How to install (sql, nginx, rc.d)
+4. Authorization and private links.
+5. Link's statistic.
 
 If there any better way to pass db handler to httpHandler? (Except main -> App struct -> Page struct)
 
@@ -28,6 +26,8 @@ Docs (commented, read with m=all)<br>
 Configs (yml & env)<br>
 Logging (log package, saving to file)<br>
 Error handling (basic, added where it needs to return error)<br>
+Tests (just a little, not 100% coverage; testify, require, assert)
+Database (pgxpool)
 
 v.1.0.* <br>
 ![v.1.0.*](readme_pics/v1.0.png)

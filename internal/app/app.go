@@ -63,7 +63,7 @@ func (myapp *app) GetPool() (*pgxpool.Pool, error ) {
   _, err = myapp.Page.Db.Acquire(myapp.Page.Ctx)
   if err != nil {
     return nil, err
-  }	
+  }
 
 	return dbpool, err
 }
@@ -79,7 +79,3 @@ func (myapp *app) Name() string {
   return myapp.name
 }
 
-// Loads configuration from configs
-func loadConfig() {
-	cfg.ParseConfig()
-}

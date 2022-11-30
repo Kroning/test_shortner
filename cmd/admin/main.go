@@ -38,3 +38,8 @@ func main() {
 	app.Run()
 	log.Fatal(http.ListenAndServe(":"+app.Cfg.Server.Port, nil)) // handlers and server can go to some App package too
 }
+
+func GetAppName() string {
+	return appName
+}
+
