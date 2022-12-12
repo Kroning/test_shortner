@@ -31,7 +31,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	port, err := start()
+	port, f, err := start()
+	defer f.Close()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -49,13 +50,12 @@ func parseFlags() error {
 }
 
 // Initializing App, starting server.
-func start() (string, error) {
+func start() (string, *os.File, error) {
 	// Redirecting logs
 	f, err := os.OpenFile(logPath+appName+".log", os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
 	if err != nil {
-		return "", err
+		return "", nil, err
 	}
-	defer f.Close()
 	log.SetOutput(f)
 
 	// Starting app
@@ -63,12 +63,12 @@ func start() (string, error) {
 	log.Println("Starting App")
 	app, err := myApp.NewApp(appName)
 	if err != nil {
-		return "", err
+		return "", f, err
 	}
 
 	fmt.Println("Running App " + appName + " at :" + app.Cfg.Server.Port)
 	app.Run()
-	return app.Cfg.Server.Port, nil
+	return app.Cfg.Server.Port, f, nil
 }
 
 func GetAppName() string {
