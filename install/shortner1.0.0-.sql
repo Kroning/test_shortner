@@ -4,7 +4,6 @@ GRANT ALL PRIVILEGES ON DATABASE shortner TO shortner;
 GRANT SELECT ON ALL TABLES IN SCHEMA INFORMATION_SCHEMA TO shortner;
 \c shortner postgres
 GRANT ALL ON SCHEMA public TO shortner;
-\c security postgres
 
 CREATE TABLE links (
   id              SERIAL PRIMARY KEY,
