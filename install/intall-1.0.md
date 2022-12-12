@@ -63,6 +63,8 @@ Run at background<br>
 ``` ./main -app redirect & ```<br>
 Or both<br>
 ``` ./main -app redirect & ./main -app admin & ```<br>
+6. If anything goes wrong, you can check logs for appropriate app. For admin:<br>
+``` cat logs/admin.log ```
 
-
+<br><br><br>
 ![v.1.0.*](../readme_pics/v1.0.png)
