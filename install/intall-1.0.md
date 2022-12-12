@@ -58,4 +58,4 @@ Run at background
 Or both
 ``` ./main -app redirect & ./main -app admin & ```
 
-![v.1.0.*](readme_pics/v1.0.png)
+![v.1.0.*](../readme_pics/v1.0.png)
