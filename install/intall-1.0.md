@@ -56,12 +56,13 @@ cp configs/redirect_example.yml configs/redirect.yml
 ```
 go build -o main cmd/main.go
 ```
-5. **Run** app any way you like. For example, you can run it from console:
-Quiting with ctrl+c:
-``` ./main -app admin ```
-Run at background
-``` ./main -app redirect & ```
-Or both
-``` ./main -app redirect & ./main -app admin & ```
+5. **Run** app any way you like. For example, you can run it from console:<br>
+Quiting with ctrl+c:<br>
+``` ./main -app admin ```<br>
+Run at background<br>
+``` ./main -app redirect & ```<br>
+Or both<br>
+``` ./main -app redirect & ./main -app admin & ```<br>
+
 
 ![v.1.0.*](../readme_pics/v1.0.png)
