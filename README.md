@@ -25,9 +25,9 @@ Docs (commented, read with m=all)<br>
 Configs (yml & env)<br>
 Logging (log package, saving to file)<br>
 Error handling (basic, added where it needs to return error)<br>
-Tests (just a little, not 100% coverage; testify, require, assert)
-Database (pgxpool)
-Flags
+Tests (just a little, not 100% coverage; testify, require, assert)<br>
+Database (pgxpool)<br>
+Flags<br>
 
 v.1.0.* : https://github.com/Kroning/test_shortner/blob/master/install/intall-1.0.md<br>
 
