@@ -30,5 +30,5 @@ Tests (just a little, not 100% coverage; testify, require, assert)
 Database (pgxpool)
 Flags
 
-v.1.0.* <br>
-![v.1.0.*](readme_pics/v1.0.png)
+v.1.0.* : https://github.com/Kroning/test_shortner/blob/master/install/intall-1.0.md<br>
+
