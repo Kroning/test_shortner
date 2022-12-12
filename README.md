@@ -1,9 +1,8 @@
 # test_shortner
 Contacts: https://t.me/Kroning https://www.linkedin.com/in/alexander-bulakhov-3122aa62/ <br>
 
-The best way to learn is experimenting.<br>
-I am trying to build shortner (or something alike) with 2 services (admin, redirect).<br>
-It's not a good idea, but for learning purpose I decided to make 2 services at 1 repo: webinterface + redirector. In production it's better to place services in different modules to deploy easily on different servers.
+Experimenting with libs and technologies.<br>
+I am trying to build shortner (or something alike) with 2 services (admin, redirect). Not the best way, but best for learning new :)<br>
 
 If you can point something that I am doing wrong - feel free to write.
 
