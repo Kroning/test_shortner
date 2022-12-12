@@ -46,11 +46,17 @@ In this version everything is placed on 1 server: nginx + app(2 services) + post
     }
 ```
 2. Make changes in **database**. Creation of user and table described at install/shortner1.0.0-.sql .
-3. **Build** app at working directory
+3. Copy configs and replace with your data
+```
+cp configs/shared_example.yml configs/shared.yml
+cp configs/admin_example.yml configs/admin.yml
+cp configs/redirect_example.yml configs/redirect.yml
+```
+4. **Build** app at working directory
 ```
 go build -o main cmd/main.go
 ```
-4. **Run** app any way you like. For example, you can run it from console:
+5. **Run** app any way you like. For example, you can run it from console:
 Quiting with ctrl+c:
 ``` ./main -app admin ```
 Run at background
