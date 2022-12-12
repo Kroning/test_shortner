@@ -1,4 +1,5 @@
-In this version everything is places on 1 server: nginx + app(2 services) + postgresql database. Many things (like complete unit-tests) unfinished.
+https://github.com/Kroning/test_shortner/releases/tag/v1.0.3 <br>
+In this version everything is placed on 1 server: nginx + app(2 services) + postgresql database. Many things (like complete unit-tests) unfinished.
 
 1. **Nginx** Add to your nginx.conf or use sites-enabled directory:
 ```
