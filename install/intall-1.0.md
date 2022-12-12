@@ -45,7 +45,7 @@ In this version everything is placed on 1 server: nginx + app(2 services) + post
         }
     }
 ```
-2. Make changes in **database**. Creation of user and table described at install/shortner1.0.0-.sql (it's not just sql).
+2. Make changes in **database**. Creation of user and table described at install/shortner1.0.0-.sql (it's not just sql). It's better to create tables with your user (login as "psql -h localhost -d shortner -U shortner") for not have problems with permissions.
 3. Copy configs and replace with your data
 ```
 cp configs/shared_example.yml configs/shared.yml
