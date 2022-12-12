@@ -28,6 +28,7 @@ Logging (log package, saving to file)<br>
 Error handling (basic, added where it needs to return error)<br>
 Tests (just a little, not 100% coverage; testify, require, assert)
 Database (pgxpool)
+Flags
 
 v.1.0.* <br>
 ![v.1.0.*](readme_pics/v1.0.png)

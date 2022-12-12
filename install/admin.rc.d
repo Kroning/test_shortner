@@ -6,9 +6,9 @@
 
 . /etc/rc.subr
 
-name="webinterface"
-rcvar="webinterface_enable"
-goprogram_command="/usr/local/www/go.kroning.ru/www/services/webinterface/main"
+name="admin"
+rcvar="admin_enable"
+goprogram_command="/usr/local/www/go.kroning.ru/www/cmd/main -app admin"
 pidfile="/var/run/${name}.pid"
 command="/usr/sbin/daemon"
 command_args="-P ${pidfile} -r -f ${goprogram_command}"
