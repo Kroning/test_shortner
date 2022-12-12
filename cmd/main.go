@@ -17,7 +17,7 @@ import (
 
 var (
 	appName    string    // Appname needs to differ admin and redirection services. Also it is used for name of main config (appName+".yml").
-	logPath    = "/usr/local/www/go.kroning.ru/www/logs/" // for testing purpose
+	logPath    = "logs/" // for testing purpose
 	ErrNoFlags = "Provide app name: [admin|redirect]"
 )
 
