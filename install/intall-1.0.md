@@ -57,3 +57,5 @@ Run at background
 ``` ./main -app redirect & ```
 Or both
 ``` ./main -app redirect & ./main -app admin & ```
+
+![v.1.0.*](readme_pics/v1.0.png)
