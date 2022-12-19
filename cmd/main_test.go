@@ -31,19 +31,22 @@ func TestStart(t *testing.T) {
 	os.Chdir("../")
 	t.Run("Test right logs dir", func(t *testing.T) {
 		appName = "admin"
-		_, err := start()
+		_, f, err := start()
+		defer f.Close()
 		require.NoError(t, err)
 	})
 	oldPath := logPath
 	t.Run("Test wrong logs dir", func(t *testing.T) {
 		logPath = "/root/"
-		_, err := start()
+		_, f, err := start()
+		defer f.Close()
 		require.Error(t, err)
 	})
 	t.Run("Test no such app", func(t *testing.T) {
 		logPath = oldPath
 		appName = "NoSuch"
-		_, err := start()
+		_, f, err := start()
+		defer f.Close()
 		require.Error(t, err)
 	})
 }

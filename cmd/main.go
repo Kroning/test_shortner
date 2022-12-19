@@ -34,6 +34,8 @@ func main() {
 	port, f, err := start()
 	defer f.Close()
 	if err != nil {
+		// if you start it manually, it's better o see error at console (and in logs too)
+		fmt.Println(err)
 		log.Fatal(err)
 	}
 	log.Fatal(http.ListenAndServe(":"+port, nil)) // handlers and server can go to some App package too
