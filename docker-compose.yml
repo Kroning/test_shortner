@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  postgresql:
+    image: postgres:15.1-alpine
+    restart: always
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: shortner
+      POSTGRES_PASSWORD: ZuSshortner098!
+      POSTGRES_DB: postgres
+    volumes:
+      - /var/lib/postgresql/docker/data:/var/lib/postgresql/data
+      - ./install/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+
+  admin:
+    image: admin1.0.3:multy
+    container_name: admin
+    depends_on: 
+      - postgresql
+    environment:
+      DB_HOST: postgresql
+    ports:
+      - '9990:9990'
+
+#  docker-gs-ping-roach:
+#    depends_on: 
+#      - roach
+#    build:
+#      context: .
+#    container_name: rest-server
+#    hostname: rest-server
+#    networks:
+#      - mynet
+#    ports:
+#      - 80:8080
+#    environment:
+#      - PGUSER=${PGUSER:-totoro}
+#      - PGPASSWORD=${PGPASSWORD:?database password not set}
+#      - PGHOST=${PGHOST:-db}
+#      - PGPORT=${PGPORT:-26257}
+#      - PGDATABASE=${PGDATABASE:-mydb}
+#    deploy:
+#      restart_policy:
+#        condition: on-failure
+#  roach:
+#    image: cockroachdb/cockroach:latest-v20.1
+#    container_name: roach
+#    hostname: db
+#    networks:
+#      - mynet
+#    ports:
+#      - 26257:26257
+#      - 8080:8080
+#    volumes:
+#      - roach:/cockroach/cockroach-data
+#    command: start-single-node --insecure
+#
+#volumes:
+#  roach:
+#
+#networks:
+#  mynet:
+#    driver: bridge
+#

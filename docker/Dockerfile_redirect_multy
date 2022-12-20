@@ -1,0 +1,25 @@
+# Multistage
+FROM golang:1.19.4-alpine AS build
+
+WORKDIR /app
+
+COPY . .
+
+RUN go mod download
+
+RUN go build -o ./cmd/main ./cmd/main.go
+
+#Deploy
+FROM alpine:3.17.0
+
+WORKDIR /app
+
+COPY --from=build /app/cmd/main ./cmd/main
+RUN mkdir logs
+COPY --from=build /app/configs/ ./configs/
+
+EXPOSE 9991
+
+ENTRYPOINT ["./cmd/main", "-app", "redirect"]
+
+#CMD [ ./cmd/main -app admin ]
