@@ -16,7 +16,7 @@ cp configs/shared_example.yml configs/shared.yml
 127.0.0.1	go.kroning.ru
 127.0.0.1	redirect.kroning.ru
 ```
-4. Optional: change DB passwords at docker-compose.yml ("POSTGRES_DB" and "DB_PASSWORD"x2). ("config/" pass will be changes for env from docker-compose. It was done just to easy change one file instead of two)
+4. Optional: change DB passwords at docker-compose.yml ("POSTGRES_DB" and "DB_PASSWORD"x2). ("config/" pass will be replaced for env from docker-compose. It was done just to easy change one file instead of two)
 5. Build 2 images (I prefer to build images and use it at docker compose.)
 ```
 sudo docker build -t admin1.1.3:multy -f docker/Dockerfile_admin_multy .
