@@ -22,5 +22,3 @@ COPY --from=build /app/static ./static/
 EXPOSE 9990
 
 ENTRYPOINT ["./cmd/main", "-app", "admin"]
-
-#CMD [ ./cmd/main -app admin ] 

@@ -38,6 +38,8 @@ func main() {
 		fmt.Println(err)
 		log.Fatal(err)
 	}
+	fs := http.FileServer(http.Dir("./static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	log.Fatal(http.ListenAndServe(":"+port, nil)) // handlers and server can go to some App package too
 }
 

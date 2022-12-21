@@ -16,7 +16,7 @@ services:
       - ./install/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
   admin:
-    image: admin1.0.3:multy
+    image: admin1.1.3:multy
     container_name: admin
     depends_on: 
       - postgresql
@@ -25,43 +25,25 @@ services:
     ports:
       - '9990:9990'
 
-#  docker-gs-ping-roach:
-#    depends_on: 
-#      - roach
-#    build:
-#      context: .
-#    container_name: rest-server
-#    hostname: rest-server
-#    networks:
-#      - mynet
-#    ports:
-#      - 80:8080
-#    environment:
-#      - PGUSER=${PGUSER:-totoro}
-#      - PGPASSWORD=${PGPASSWORD:?database password not set}
-#      - PGHOST=${PGHOST:-db}
-#      - PGPORT=${PGPORT:-26257}
-#      - PGDATABASE=${PGDATABASE:-mydb}
-#    deploy:
-#      restart_policy:
-#        condition: on-failure
-#  roach:
-#    image: cockroachdb/cockroach:latest-v20.1
-#    container_name: roach
-#    hostname: db
-#    networks:
-#      - mynet
-#    ports:
-#      - 26257:26257
-#      - 8080:8080
-#    volumes:
-#      - roach:/cockroach/cockroach-data
-#    command: start-single-node --insecure
-#
-#volumes:
-#  roach:
-#
-#networks:
-#  mynet:
-#    driver: bridge
-#
+  redirect:
+    image: redirect1.1.3:multy
+    container_name: redirect
+    depends_on: 
+      - postgresql
+    environment:
+      DB_HOST: postgresql
+    ports:
+      - '9991:9991'
+
+  nginx:
+    image: nginx:1.23.3-alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/admin-nginx.conf:/etc/nginx/conf.d/admin-nginx.conf
+      - ./docker/redirect-nginx.conf:/etc/nginx/conf.d/redirect-nginx.conf
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+

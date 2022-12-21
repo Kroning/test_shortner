@@ -9,9 +9,10 @@ import (
 	hand "github.com/Kroning/test_shortner/internal/handlers"
 
 	"context"
-	_ "fmt"
+	"fmt"
 	"log"
 	_ "os"
+	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
 )
@@ -60,9 +61,24 @@ func (myapp *app) GetPool() (*pgxpool.Pool, error) {
 	//defer dbpool.Close() - No need actually
 
 	myapp.Page.Db = dbpool
-	_, err = myapp.Page.Db.Acquire(myapp.Page.Ctx)
-	if err != nil {
-		return nil, err
+
+	// In container DB can start a few seconds.
+	// Docker with "depends_on" wait for container, but not DB.
+	// This is workaround for start up.
+	cnt := 0
+	for true {
+		_, err = myapp.Page.Db.Acquire(myapp.Page.Ctx)
+		if err != nil {
+			cnt++
+			if cnt > 5 {
+				return nil, err
+			}
+			fmt.Println("No connect to database, attempt ", cnt)
+			time.Sleep(2 * time.Second)
+			continue
+		}
+		fmt.Println("DB connection succesfull")
+		break
 	}
 
 	return dbpool, err
