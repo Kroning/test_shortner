@@ -9,9 +9,8 @@ If you can point something that I am doing wrong - feel free to write.
 TODO:
 1. HTML is simple. Better way - some API calls with JSON in return.
 2. Routing module (because I can).
-3. How to install (sql, nginx, rc.d)
-4. Authorization and private links.
-5. Link's statistic.
+3. Authorization and private links.
+4. Link's statistic.
 
 If there any better way to pass db handler to httpHandler? (Except main -> App struct -> Page struct)
 
@@ -28,6 +27,7 @@ Error handling (basic, added where it needs to return error)<br>
 Tests (just a little, not 100% coverage; testify, require, assert)<br>
 Database (pgxpool)<br>
 Flags<br>
+Docker<br>
 
 v.1.0.* : https://github.com/Kroning/test_shortner/blob/master/install/intall-1.0.md<br>
-
+v.1.1.* : https://github.com/Kroning/test_shortner/blob/master/install/intall-1.1.md<br>
