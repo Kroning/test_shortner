@@ -22,6 +22,7 @@ services:
       - postgresql
     environment:
       DB_HOST: postgresql
+      DB_PASSWORD: ZuSshortner098!
     ports:
       - '9990:9990'
 
@@ -32,6 +33,7 @@ services:
       - postgresql
     environment:
       DB_HOST: postgresql
+      DB_PASSWORD: ZuSshortner098!
     ports:
       - '9991:9991'
 
