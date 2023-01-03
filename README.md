@@ -1,6 +1,8 @@
 # test_shortner
 Contacts: https://t.me/Kroning https://www.linkedin.com/in/alexander-bulakhov-3122aa62/ <br>
 
+(Эксперименты с библиотеками и технологиями)
+
 Experimenting with libs and technologies.<br>
 I am trying to build shortner (or something alike) with 2 services (admin, redirect). Not the best way, but best for learning new :)<br>
 
