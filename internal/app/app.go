@@ -7,14 +7,11 @@ package app
 import (
 	cfg "github.com/Kroning/test_shortner/internal/config"
 	hand "github.com/Kroning/test_shortner/internal/handlers"
+	store "github.com/Kroning/test_shortner/internal/storage"
 
 	"context"
 	"fmt"
 	"log"
-	_ "os"
-	"time"
-
-	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 // All data we need to pass through application
@@ -26,8 +23,8 @@ type app struct {
 }
 
 // Creates new App object. Reads config's files and saves it at Cfg field.
-// Creates context and initializes dbpool withit using config's data.
-// Returnes app object or error (unable to read configs or make connection).
+// Creates context and initializes storage(db, file etc.) using config's data.
+// Returnes app object or error (unable to read configs or make connection with storage).
 func NewApp(name string) (app, error) {
 	app := app{
 		name: name,
@@ -41,7 +38,7 @@ func NewApp(name string) (app, error) {
 	}
 	app.Cfg = cfg
 
-	_, err = app.GetPool()
+	app.Page.Storage, err = app.GetStorage()
 	if err != nil {
 		return app, err
 	}
@@ -49,39 +46,20 @@ func NewApp(name string) (app, error) {
 	return app, nil
 }
 
-// Creates postgres db pool
-// Test connection with Acquire
-func (myapp *app) GetPool() (*pgxpool.Pool, error) {
-	db := myapp.Cfg.Db
-	dburl := "postgres://" + db.Username + ":" + db.Password + "@" + db.Host + ":" + db.Port + "/" + db.Dbname
-	dbpool, err := pgxpool.New(myapp.Page.Ctx, dburl)
-	if err != nil {
-		return nil, err
-	}
-	//defer dbpool.Close() - No need actually
-
-	myapp.Page.Db = dbpool
-
-	// In container DB can start a few seconds.
-	// Docker with "depends_on" wait for container, but not DB.
-	// This is workaround for start up.
-	cnt := 0
-	for true {
-		_, err = myapp.Page.Db.Acquire(myapp.Page.Ctx)
+// Creates new storage object (db or file)
+func (myapp *app) GetStorage() (store.Storage, error) {
+	var storage store.Storage = nil
+	var err error
+	if myapp.Cfg.Db.Host != "" {
+		storage, err = store.PgConnect(myapp.Ctx, myapp.Cfg)
 		if err != nil {
-			cnt++
-			if cnt > 5 {
-				return nil, err
-			}
-			fmt.Println("No connect to database, attempt ", cnt)
-			time.Sleep(2 * time.Second)
-			continue
+			return nil, err
 		}
-		fmt.Println("DB connection succesfull")
-		break
+	} else if myapp.Cfg.Db.File != "" {
+	} else {
+		return nil, fmt.Errorf("Storage isn't chosed.")
 	}
-
-	return dbpool, err
+	return storage, nil
 }
 
 // Runs application initializing page's handlers

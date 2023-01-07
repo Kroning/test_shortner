@@ -5,13 +5,11 @@ package handlers
 
 import (
 	"fmt"
-	_ "html/template"
 	"log"
 	"net/http"
 	"regexp"
 
-	"github.com/jackc/pgx/v5"
-	_ "github.com/jackc/pgx/v5/pgxpool"
+	store "github.com/Kroning/test_shortner/internal/storage"
 )
 
 var regLink = regexp.MustCompile("^/([a-zA-Z0-9]+)$") // regexp to validate URL
@@ -34,16 +32,12 @@ func (p Page) redirectHandler(w http.ResponseWriter, r *http.Request) {
 		alias := aliases[1]
 
 		// Looking for link in database
-		query := "SELECT url FROM links WHERE deleted_at IS NULL and alias = $1;"
-		row := p.Db.QueryRow(p.Ctx, query, alias)
-		var url string
-		err := row.Scan(&url)
+		url, err := p.Storage.CheckLinkExistance(p.Ctx, alias)
 		if err != nil {
-			if err == pgx.ErrNoRows {
+			if err == store.LinkNotExists {
 				http.NotFound(w, r)
 				return
 			}
-			log.Println("Error ", err, " while executing query ", query)
 			http.Error(w, "Internal Server Error", 500)
 			return
 		}

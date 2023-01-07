@@ -5,6 +5,7 @@ package handlers
 
 import (
 	"context"
+	store "github.com/Kroning/test_shortner/internal/storage"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"net/http"
 )
@@ -18,14 +19,15 @@ type Page struct {
 	Db      *pgxpool.Pool
 	Ctx     context.Context
 	Result  [][]string
+	Storage store.Storage
 }
 
 // Returns new page object with title and db handler provided
-func NewPage(t string, db *pgxpool.Pool, ctx context.Context) Page {
+func NewPage(t string, Storage store.Storage, ctx context.Context) Page {
 	return Page{
-		Title: t,
-		Db:    db,
-		Ctx:   ctx,
+		Title:   t,
+		Storage: Storage,
+		Ctx:     ctx,
 	}
 }
 

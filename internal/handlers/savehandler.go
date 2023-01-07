@@ -9,7 +9,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/jackc/pgx/v5"
+	store "github.com/Kroning/test_shortner/internal/storage"
 )
 
 // Creates a new link
@@ -33,26 +33,19 @@ func (p Page) saveHandler(w http.ResponseWriter, r *http.Request) {
 		url := r.FormValue("url")
 
 		// Looking for duplicate in database
-		query := "SELECT id FROM links WHERE alias = $1 and deleted_at IS NULL;"
-		row := p.Db.QueryRow(p.Ctx, query, alias)
-		var id string
-		err := row.Scan(&id)
+		_, err := p.Storage.CheckLinkExistance(p.Ctx, alias)
 		if err == nil {
 			// No errors - link exists!
 			p.Message = "Link already exists."
 			files = append(files, tmplPath+"/message.tmpl")
 		} else {
-			if err != pgx.ErrNoRows {
+			if err != store.LinkNotExists {
 				// Real Error
-				log.Println("Error ", err, " while Scan query ", query)
 				http.Error(w, "Internal Server Error", 500)
 				return
 			}
-			// pgx.ErrNoRows = we can create link
-			query := "INSERT INTO links VALUES(default,$1,$2,NOW(),NULL);"
-			_, err := p.Db.Exec(p.Ctx, query, alias, url)
+			err := p.Storage.InsertLink(p.Ctx, alias, url)
 			if err != nil {
-				log.Println("Link innsertion error: ", err)
 				http.Error(w, "Internal Server Error", 500)
 				return
 			}

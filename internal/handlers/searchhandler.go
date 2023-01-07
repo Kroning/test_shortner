@@ -8,8 +8,6 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-
-	_ "github.com/jackc/pgx/v5/pgxpool"
 )
 
 // Main page/search http handler
@@ -38,25 +36,14 @@ func (p Page) mainHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		name := r.FormValue("alias")
-		query := "SELECT id, alias, url, TO_CHAR(created_at, 'yyyy-mm-dd hh:mm:ss') FROM links WHERE deleted_at IS NULL and alias LIKE $1;"
-		rows, err := p.Db.Query(p.Ctx, query, "%"+name+"%")
-		defer rows.Close()
+
+		var err error
+		p.Result, err = p.Storage.LoadLinksByAlias(p.Ctx, name)
 		if err != nil {
-			log.Println("Error ", err, " while executing query ", query)
 			http.Error(w, "Internal Server Error", 500)
 			return
 		}
-		for rows.Next() {
-			var id, alias, url, created string
-			err = rows.Scan(&id, &alias, &url, &created)
-			if err != nil {
-				log.Println("Error ", err, " while Scan query ", query)
-				http.Error(w, "Internal Server Error", 500)
-				return
-			}
-			slice := []string{id, alias, url, created}
-			p.Result = append(p.Result, slice)
-		}
+
 		if len(p.Result) == 0 {
 			p.Message = "No links found."
 			files = append(files, tmplPath+"/message.tmpl")
@@ -64,11 +51,6 @@ func (p Page) mainHandler(w http.ResponseWriter, r *http.Request) {
 			files = append(files, tmplPath+"/result.tmpl")
 		}
 
-		if err = rows.Err(); err != nil {
-			log.Println("Error ", err, " while Scan query ", query)
-			http.Error(w, "Internal Server Error", 500)
-			return
-		}
 	default:
 		fmt.Fprintf(w, "Sorry, only GET and POST methods are supported.")
 		http.Error(w, "Forbidden", 403)

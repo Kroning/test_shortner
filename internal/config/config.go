@@ -23,6 +23,7 @@ type Config struct {
 		Host     string `yaml:"host", envconfig:"DB_HOST"`
 		Port     string `yaml:"port", envconfig:"DB_PORT"`
 		Dbname   string `yaml:"dbname", envconfig:"DB_DBNAME"`
+		File     string `yaml:"file", envconfig:"DB_DBFILE"`
 	} `yaml:"database"`
 }
 
