@@ -1,5 +1,5 @@
 This release uses docker to deploy "all-in-one". Still there are many impovement could be done (like secrets).
-It is assumed you have installed everything needed software (like docker).
+It is assumed you have installed needed software (like docker).
 
 1. Downloading 1.1.0 release:
 ```
